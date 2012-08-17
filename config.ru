@@ -1,0 +1,2 @@
+require './Pursue'
+run Pursue
