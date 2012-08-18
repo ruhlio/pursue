@@ -1,2 +1,4 @@
-require './Pursue'
+$: << 'lib'
+
+require 'pursue'
 run Pursue

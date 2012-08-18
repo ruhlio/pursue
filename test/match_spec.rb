@@ -19,4 +19,15 @@ Anything else
       match.mvp.should eq("The Dude")
    end
 
+   it "should create blank member variables for missing fields in the forum post" do
+      match = Match.new(:title => "STD vs THAT", message => "")
+
+      match.versus.should eq("")
+      match.mode.should eq("")
+      match.map.should eq("")
+      match.score.should eq("")
+      match.players.should eq("")
+      match.mvp.should eq("")
+   end
+
 end

@@ -1,6 +1,6 @@
-class Match
-   attr_reader :versus, :mode, :map, :score, :players, :mvp
+require 'log4r'
 
+class Match
    FIELDS = {
       :mode => 'Mode',
       :map => 'Map',
@@ -8,6 +8,9 @@ class Match
       :players => 'Players',
       :mvp => 'MVP'
    }
+
+   @logger = Log4r::Logger.new(Match.name)
+   attr_reader :versus, :mode, :map, :score, :players, :mvp
 
    def initialize( forum_post )
       @versus = forum_post[:title]
@@ -31,8 +34,8 @@ class Match
       if groups
          groups[1]
       else
-         nil
-         #TODO: log failed parse
+         ""
+         @logger.error()
       end
    end
 

@@ -12,8 +12,10 @@ class XenForo
          from xf_post post
          join xf_thread thread on thread.first_post_id = post.post_id
          where thread.node_id = :node_id
+         limit :thread_count
       },
-         :node_id => forum_node_id
+         :node_id => forum_node_id,
+         :thread_count => thread_count
       ).all
    end
 
