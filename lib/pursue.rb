@@ -5,8 +5,10 @@ require 'sinatra/config_file'
 require 'json'
 require 'log4r'
 require 'log4r/yamlconfigurator'
-require 'log4r/outputter/datefileoutputter'
+require 'log4r/outputter/fileoutputter'
 require 'log4r/outputter/consoleoutputters'
+
+require 'debugger'
 
 require 'xenforo'
 require 'match'
@@ -14,34 +16,39 @@ require 'match'
 class Pursue < Sinatra::Base
    register Sinatra::ConfigFile
 
-   enable :logging
    config_file "#{Dir.pwd}/settings.yaml"
 
    configure do
       Log4r::YamlConfigurator.load_yaml_file('log4r.yaml')
+
+      disable :logging
+      logger = Log4r::Logger.new( Pursue.name )
+      use Rack::CommonLogger, logger
    end
 
    before do
+      content_type :json
    end
 
    after do
    end
 
-   get '/' do
-      "It's #{Time.now}"
-   end
-
    get '/news' do
-      content_type :json
-
-      node_id = settings.news_forum_node_id
-      news = XenForo.get_threads( node_id, 10 )
+      node_id = settings.node_id['news_forum']
+      news = XenForo.get_threads( node_id, :max => 10 )
 
       news.to_json
    end
 
    get '/matches' do
-      content_type :json
+      matches = []
+
+      node_id = settings.node_id['matches_forum']
+      XenForo.get_threads( node_id ).each do |post|
+         matches << Match.new( post )
+      end
+
+      matches.to_json
    end
 
    post '/apply' do

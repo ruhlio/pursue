@@ -20,7 +20,7 @@ Anything else
    end
 
    it "should create blank member variables for missing fields in the forum post" do
-      match = Match.new(:title => "STD vs THAT", message => "")
+      match = Match.new(:title => "", :message => "")
 
       match.versus.should eq("")
       match.mode.should eq("")

@@ -1,4 +1,5 @@
 require 'log4r'
+require 'bb-ruby-ext'
 
 class Match
    FIELDS = {
@@ -9,14 +10,24 @@ class Match
       :mvp => 'MVP'
    }
 
-   @logger = Log4r::Logger.new(Match.name)
    attr_reader :versus, :mode, :map, :score, :players, :mvp
 
    def initialize( forum_post )
-      @versus = forum_post[:title]
+      @logger = Log4r::Logger.new(Match.name)
 
-      message = forum_post[:message]
-      parse_message(message)
+      @versus = forum_post[:title]
+      parse_message( BBRuby.to_text( forum_post[:message] ) )
+   end
+
+   def to_json( *args )
+      hash = {}
+
+      hash[:versus] = versus
+      FIELDS.keys.each do |var_name|
+         hash[var_name] = self.send(var_name)
+      end
+
+      hash.to_json( args )
    end
 
    private
@@ -34,8 +45,8 @@ class Match
       if groups
          groups[1]
       else
+         @logger.error("Failed to parse '#{key}' from forum post")
          ""
-         @logger.error()
       end
    end
 

@@ -1,3 +1,4 @@
-apply_forum_node_id: 2
-news_forum_node_id: 3
-match_forum_node_id: 4
+node_id:
+   apply_forum: 2
+   news_forum: 3
+   matches_forum: 4
