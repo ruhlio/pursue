@@ -1,13 +1,12 @@
 source :rubygems
 
-gem 'sinatra'
-gem 'sinatra-contrib'
+gem 'ramaze'
 gem 'json'
 gem 'mysql'
 gem 'sequel'
 gem 'log4r'
 gem 'bb-ruby'
+gem 'yaml'
 
 gem 'debugger'
-
 gem 'rspec'

@@ -1,4 +1,7 @@
-$: << 'lib'
+#!/usr/bin/env rackup
 
-require 'pursue'
-run Pursue
+$:.concat ['./', 'lib']
+
+require 'app'
+Ramaze.start(:root => Ramaze.options.roots, :started => true)
+run Ramaze

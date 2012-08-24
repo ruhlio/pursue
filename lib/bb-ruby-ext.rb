@@ -10,6 +10,10 @@ end
 
 class String
    def bbcode_to_text
+      BBRuby.to_text(self)
+   end
+
+   def bbcode_to_text!
       self.replace(BBRuby.to_text(self))
    end
 end

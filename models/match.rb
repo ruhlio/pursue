@@ -13,10 +13,10 @@ class Match
    attr_reader :versus, :mode, :map, :score, :players, :mvp
 
    def initialize( forum_post )
-      @logger = Log4r::Logger.new(Match.name)
+      @logger = Log4r::Logger.new( Match.name )
 
       @versus = forum_post[:title]
-      parse_message( BBRuby.to_text( forum_post[:message] ) )
+      parse_message( forum_post[:message] )
    end
 
    def to_json( *args )
@@ -24,7 +24,7 @@ class Match
 
       hash[:versus] = versus
       FIELDS.keys.each do |var_name|
-         hash[var_name] = self.send(var_name)
+         hash[var_name] = self.send( var_name )
       end
 
       hash.to_json( args )

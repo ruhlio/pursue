@@ -1,0 +1,6 @@
+xenforo:
+   connection_string: "mysql://root:sql@localhost/pursue_community"
+   node_id:
+      apply_forum: 2
+      news_forum: 3
+      matches_forum: 4

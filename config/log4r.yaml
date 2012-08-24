@@ -11,8 +11,7 @@ log4r_config:
         formatter: *formatter
       - type: FileOutputter
         name: file
-        filename: "app.log"
-        dirname: "log"
+        filename: "log/app.log"
         formatter: *formatter
 
 formatter: &formatter
