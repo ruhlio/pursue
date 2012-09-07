@@ -1,0 +1,21 @@
+.input-area {
+   @include column(12);
+}
+
+#previous-clans  {
+   @include column(12);
+
+   margin-bottom: 10px;
+
+   input {
+      @include column(11);
+   }
+
+   ul {
+      @include column(12);
+
+      a {
+         font-size: 1.8em;
+      }
+   }
+}

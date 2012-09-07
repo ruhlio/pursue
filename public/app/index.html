@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" ng-app="pursue">
+<head>
+   <meta charset="utf-8">
+   <meta name="fragment" content="!" />
+   <meta name="description" content="Pursue">
+   <meta name="author" content="Jeff Ruhl">
+   <meta name="keywords" content="pursue bf3 gaming clan">
+   <title>Team Pursue</title>
+   <link rel="stylesheet" media="screen" href="styles/app.css"></link>
+   <link rel="shortcut icon" type="image/png" href="images/favicon.png"></link>
+
+   <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33026623-1']);
+      _gaq.push(['_setDomainName', 'teampursue.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+   </script>
+</head>
+<body ng-controller="IndexController">
+
+   <header>
+      <div id="banner"></div>
+   </header>
+
+   <nav>
+      <ul>
+         <li ng-repeat="link in navigationLinks">
+            <a href="#!{{link.url}}">{{link.text}}</a>
+         </li>
+      </ul>
+   </nav>
+
+   <div id="content">
+      <div id="sidebar">
+
+         <div class="box">
+            <div class="box-header">
+               Follow Us
+            </div>
+            <div class="box-body">
+               <ul id="follow-nav">
+                  <li>
+                     <a href="http://www.facebook.com/TeamPursueGaming" target="_blank" title="Facebook">
+                        <img src="images/facebook_badge.gif" alt="Facebook" width="48" height="48">
+                     </a>
+                  </li>
+                  <li>
+                     <a href="http://twitter.com/TeamPursue" target="_blank" title="Twitter">
+                        <img src="images/twitter_icon.png" alt="Twitter" width="48" height="48">
+                     </a>
+                  </li>
+                  <li>
+                     <a href="http://www.youtube.com/teampursue" target="_blank" title="Youtube" >
+                        <img src="images/youtube_logo.gif" alt="Youtube" width="48" height="48">
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+
+        <div class="box">
+          <div class="box-header">
+            Teamspeak
+          </div>
+          <div class="box-body">
+            <div id="ts3viewer_998095" style="width:; background-color:;"> </div>
+            <script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+            <script type="text/javascript">
+               var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=998095&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=FF8300&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=FF8300&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=FF8300&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=FF8300&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+               ts3v_display.init(ts3v_url_1, 998095, 100);
+            </script>
+          </div>
+        </div>
+
+         <div class="box">
+            <div class="box-header">
+               Sponsors
+            </div>
+            <div class="box-body">
+               <ul>
+                  <li>Nobody!</li>
+               </ul>
+            </div>
+         </div>
+
+      </div>
+
+      <div id="flash">
+         <!-- TODO: flash -->
+      </div>
+
+      <div id="main" ng-view>
+      </div>
+
+   </div>
+
+   <footer>
+      &copy; Team Pursue 2012
+   </footer>
+
+
+   <script src="scripts/lib/angular/angular.js"></script>
+   <script src="scripts/lib/angular/angular-resource.js"></script>
+   <script src="scripts/lib/angular/angular-loader.js"></script>
+   <script src="scripts/lib/angular/angular-cookies.js"></script>
+   <script src="scripts/lib/angular/angular-sanitize.js"></script>
+   <script src="scripts/app.js"></script>
+   <script src="scripts/services.js"></script>
+   <script src="scripts/controllers.js"></script>
+   <script src="scripts/filters.js"></script>
+   <script src="scripts/directives.js"></script>
+</body>
+</html>

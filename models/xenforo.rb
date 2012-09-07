@@ -42,19 +42,26 @@ class XenForo
       threads
    end
 
-   def get_user_profile( username )
+   def get_user_profiles( user_groups )
+      user_profiles = []
+
       @DB.fetch(%Q{
-         select str_to_date(concat(dob_day, '-', dob_month, '-', dob_year), '%Y-%m-%d') date_of_birth
-                homepage,
-                location,
-                occupation,
-                about
-         from xf_user_profile
-         join xf_user on xf_user.user_id = xf_user_profile.user_id
-         where xf_user.username = :username
+select str_to_date(concat(user_profile.dob_day, '-', user_profile.dob_month, '-', user_profile.dob_year), '%Y-%m-%d') date_of_birth,
+       user_profile.location location,
+       user_group.title title,
+       user_profile.about about
+from xf_user_profile user_profile
+join xf_user user on user.user_id = user_profile.user_id
+join xf_user_group user_group on user_group.user_group_id = user.user_group_id
+where user_group.title in :user_groups
       }, {
-         :username => username
-      }).first
+         :user_groups => user_groups
+      }).each do |user_profile|
+         user_profile[:about].bbcode_to_html!
+         user_profiles << user_profile
+      end
+
+      user_profiles
    end
 
    def get_user_id( username )

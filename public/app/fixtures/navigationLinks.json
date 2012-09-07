@@ -1,0 +1,26 @@
+[
+   {
+      "url": "/",
+      "text": "Home"
+   },
+   {
+      "url": "/forums",
+      "text": "Forums"
+   },
+   {
+      "url": "/matches",
+      "text": "Matches"
+   },
+   {
+      "url": "/roster",
+      "text": "Roster"
+   },
+   {
+      "url": "/apply",
+      "text": "Join Us"
+   },
+   {
+      "url": "/about",
+      "text": "About"
+   }
+]

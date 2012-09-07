@@ -1,0 +1,25 @@
+<div id="page" class="news-box">
+<div class="box-header">
+   Roster
+</div>
+<div class="box-body">
+
+<ul id="roster-list">
+   <li ng-repeat="member in members">
+      <div>
+         <span class="key">Username:</span>
+         <span class="value">{{member.username}}</span>
+      </div>
+      <div>
+         <span class="key">Role:</span>
+         <span class="value">{{member.role}}</span>
+      </div>
+      <div>
+         <span class="key">Location:</span>
+         <span class="value">{{member.location}}</span>
+      </div>
+      <div class="about" ng-bind-html-unsafe="member.about"></div>
+   </li>
+</ul>
+
+</div>

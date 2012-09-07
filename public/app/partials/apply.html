@@ -1,0 +1,40 @@
+<div id="page">
+<div class="box-header">
+   Join Us
+</div>
+<div class="box-body">
+
+<form action="/apply" method="post">
+   <label for="username">Username</label>
+   <input type="text" id="username" name="username" maxlength="50">
+
+   <label for="email">Email</label>
+   <input type="email" id="email" name="email" maxlength="100">
+
+   <label for="location">Location</label>
+   <input type="text" id="email" name="email" maxlength="150">
+
+   <label for="age">Age</label>
+   <input type="number" id="age" name="age" min="13">
+
+   <div id="previous-clans">
+      <label>Previous Clans</label>
+      <ul class="side-nav">
+         <li>
+            <input type="text" name="previousClan[0]" maxlength="100">
+            <a href="javascript://">&times;</a>
+         </li>
+      </ul>
+      <a href="javascript://" class="small button" disabled="possibly">Add</a>
+   </div>
+
+   <label for="gamingStyle">Your gaming style</label>
+   <textarea id="gamingStyle" name="gamingStyle" rows="3"></textarea>
+
+   <label for="reason">Why you want to join</label>
+   <textarea id="reason" name="reason" rows="5"></textarea>
+
+   <input type="submit" class="medium button" value="Apply" disabled="possibly">
+</form>
+
+</div>

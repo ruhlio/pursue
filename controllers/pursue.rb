@@ -7,7 +7,7 @@ require 'models/xenforo'
 require 'models/match'
 
 class Pursue < Ramaze::Controller
-   map '/'
+   map '/api'
 
    provide( :json, :type => 'application/json' ) do |action, value|
       value.to_json
@@ -21,12 +21,8 @@ class Pursue < Ramaze::Controller
    end
 
    def news
-      response['Content-Type'] = 'application/json'
-
       node_id = @@settings['xenforo']['node_id']['news_forum']
-      news = @xenforo.get_threads( node_id, :max => 10, :bbcode => :render )
-
-      news
+      @xenforo.get_threads( node_id, :max => 10, :bbcode => :render )
    end
 
    def matches
@@ -41,7 +37,8 @@ class Pursue < Ramaze::Controller
    end
 
    def roster
-      @xenforo.get_user_profile()
+      member_groups = @@settings['xenforo']['member_groups']
+      @xenforo.get_user_profiles( member_groups )
    end
 
    def apply

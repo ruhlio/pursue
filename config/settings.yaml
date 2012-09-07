@@ -4,3 +4,8 @@ xenforo:
       apply_forum: 2
       news_forum: 3
       matches_forum: 4
+   member_groups:
+      - Member
+      - Administrative
+      - Moderating
+      - Registered

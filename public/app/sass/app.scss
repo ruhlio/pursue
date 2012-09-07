@@ -1,0 +1,110 @@
+@import "settings";
+@import "foundation";
+
+@import "home";
+@import "apply";
+@import "roster";
+
+$outerPadding: 20px;
+
+body {
+   background-image: url("../images/background.png");
+   background-position: center center;
+   background-repeat: repeat;
+
+   font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+}
+
+header, nav, footer, #content {
+   @include outerRow();
+   padding: 0 $outerPadding;
+
+   background-color: #878787;
+}
+
+header {
+   height: 150px;
+   padding-top: $outerPadding;
+}
+
+header #banner {
+   @include column(12, center);
+
+   background-color: #293f0c;
+   background-image: url("../images/banner.png");
+   background-position: center center;
+   background-repeat: no-repeat;
+   height: 150px;
+}
+
+nav ul {
+   @extend .nav-bar;
+}
+
+nav > ul > li > a:first-child {
+   text-transform: uppercase;
+   font-size: 1.5em;
+   font-weight: bold;
+}
+
+.box {
+   margin-bottom: 10px;
+}
+
+#page {
+   @include column(12);
+   padding-right: 0;
+}
+
+.box-header {
+   @include column(12);
+
+   padding: 10px;
+
+   text-transform: uppercase;
+   font-size: 1.3em;
+   color: $secondaryColor;
+   background-color: #293f0c;
+}
+
+.box-body {
+   @include column(12);
+
+   padding: 10px;
+
+   background-color: #e5e5e5;
+}
+
+#sidebar {
+   @include column(3, collapse);
+}
+
+#flash {
+   @include column(9);
+}
+
+#main {
+   @include column(9, collapse);
+
+   .box {
+      @include column(6);
+      padding-right: 0;
+   }
+}
+
+#follow-nav {
+   list-style: none;
+
+   li {
+      display: inline;
+   }
+}
+
+footer {
+   padding-top: $outerPadding;
+   padding-bottom: $outerPadding;
+
+   text-align: center;
+   color: #eee;
+   font-size: ms(1);
+}

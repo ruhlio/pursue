@@ -7,10 +7,11 @@ class Match
       :map => 'Map',
       :score => 'Final Score',
       :players => 'Players',
-      :mvp => 'MVP'
+      :mvp => 'MVP',
+      :league => 'League'
    }
 
-   attr_reader :versus, :mode, :map, :score, :players, :mvp
+   attr_reader :versus, :mode, :map, :score, :players, :mvp, :league
 
    def initialize( forum_post )
       @logger = Log4r::Logger.new( Match.name )

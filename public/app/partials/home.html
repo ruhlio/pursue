@@ -1,0 +1,47 @@
+<div class="box">
+   <div class="box-header">
+      Headlines
+   </div>
+   <div class="box-body">
+      <table>
+         <tbody>
+            <tr ng-repeat="article in news">
+               <td>{{article.date | date:"longDate" }}</td>
+               <td>{{article.title}}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+
+<div class="box">
+   <div class="box-header">
+      Recent Matches
+   </div>
+   <div class="box-body">
+       <table class="recent-matches">
+         <tbody>
+            <tr ng-repeat="match in matches">
+               <td>{{match.versus}}</td>
+               <td>{{match.league}}</td>
+               <td>{{match.score}}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+
+<div id="page">
+   <div ng-repeat="article in news">
+      <div class="box-header">
+         {{article.title}}
+      </div>
+      <article class="box-body">
+         <p>
+            Posted {{article.date | date:"longDate"}}
+         </p>
+         <p ng-bind-html-unsafe="article.message">
+         </p>
+      </article>
+   </div>
+</div>

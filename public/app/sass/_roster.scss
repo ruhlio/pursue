@@ -1,0 +1,35 @@
+#roster-list {
+   @include column(12);
+
+   list-style: none;
+
+   li {
+      @include column(12, collapse);
+      border-top: 2px dotted $secondaryColor;
+      padding-top: 10px;
+      margin-top: 10px;
+
+      &:first-child {
+         border-top: none;
+         padding-top: 0;
+         margin-top: 0;
+      }
+   }
+
+   div {
+      @include column(12, collapse);
+
+      .key {
+         @include column(2, collapse);
+      }
+
+      .value {
+         @include column(10);
+      }
+
+   }
+
+   .about {
+      @include column(10);
+   }
+}
