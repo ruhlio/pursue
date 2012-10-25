@@ -5,7 +5,7 @@ class XenForo
 
    def initialize( connection_string )
       @logger = Log4r::Logger.new( XenForo.name )
-      @DB = Sequel.connect( connection_string )
+      @connection_string = connection_string
    end
 
 
@@ -29,7 +29,8 @@ class XenForo
          args[:max] = options[:max]
       end
 
-      threads = @DB.fetch( sql, args ).all
+      connection = get_connection
+      threads = connection.fetch( sql, args ).all
       if options.has_key? :bbcode
          threads.each do |thread|
             if options[:bbcode] == :strip
@@ -39,6 +40,7 @@ class XenForo
             end
          end
       end
+      connection.disconnect
 
       threads
    end
@@ -46,7 +48,8 @@ class XenForo
    def get_user_profiles( user_groups )
       user_profiles = []
 
-      @DB.fetch(%Q{
+      connection = get_connection
+      connection.fetch(%Q{
 select str_to_date(concat(user_profile.dob_day, '-', user_profile.dob_month, '-', user_profile.dob_year), '%Y-%m-%d') date_of_birth,
        user_profile.location location,
        user_group.title title,
@@ -62,26 +65,18 @@ where user_group.title in :user_groups
          user_profile[:about].bbcode_to_html!
          user_profiles << user_profile
       end
+      connection.disconnect
 
       user_profiles
    end
 
-   def get_user_id( username )
-      @DB.fetch(%Q{
-         select user_id
-         from xf_user
-         where username = :username
-      }, {
-         :username => username
-      }).first
-   end
-
    def create_thread( forum_node_id, username, title, message )
+      connection = get_connection
       post_date = Time.now
-      user_id = get_user_id( username )
+      user_id = get_user_id( connection, username )
 
-      @DB.transaction do
-         thread_id = @DB[:xf_thread].insert(
+      connection.transaction do
+         thread_id = connection[:xf_thread].insert(
             :node_id => forum_node_id,
             :title => title,
             :user_id => user_id,
@@ -94,7 +89,7 @@ where user_group.title in :user_groups
             :last_post_username => username
             )
 
-         post_id = @DB[:xf_post].insert(
+         post_id = connection[:xf_post].insert(
             :thread_id => thread_id,
             :user_id => user_id,
             :username => username,
@@ -104,7 +99,7 @@ where user_group.title in :user_groups
             :like_users => ''
          )
 
-         rows_updated = @DB[:xf_thread].update(
+         rows_updated = connection[:xf_thread].update(
             :first_post_id => post_id,
             :last_post_id => post_id
          ).
@@ -119,6 +114,22 @@ where user_group.title in :user_groups
 
       end
 
+   end
+
+private
+
+   def get_connection
+      Sequel.connect( @connection_string )
+   end
+
+   def get_user_id( connection, username )
+      connection.fetch(%Q{
+         select user_id
+         from xf_user
+         where username = :username
+      }, {
+         :username => username
+      }).first
    end
 
 end
