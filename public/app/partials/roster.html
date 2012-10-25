@@ -6,16 +6,17 @@
 
 <ul id="roster-list">
    <li ng-repeat="member in members">
+      <img src="{{member.avatar_url}}" width="96" height="96" alt="Avatar">
       <div>
-         <span class="key">Username:</span>
+         <span class="group1-key">Username:</span>
          <span class="value">{{member.username}}</span>
       </div>
       <div>
-         <span class="key">Role:</span>
+         <span class="group1-key">Role:</span>
          <span class="value">{{member.role}}</span>
       </div>
       <div>
-         <span class="key">Location:</span>
+         <span class="group1-key">Location:</span>
          <span class="value">{{member.location}}</span>
       </div>
       <div class="about" ng-bind-html-unsafe="member.about"></div>

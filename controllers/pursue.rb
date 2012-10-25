@@ -22,14 +22,14 @@ class Pursue < Ramaze::Controller
 
    def news
       node_id = @@settings['xenforo']['node_id']['news_forum']
-      @xenforo.get_threads( node_id, :max => 10, :bbcode => :render )
+      @xenforo.get_threads( node_id, max: 10, bbcode: :render )
    end
 
    def matches
       matches = []
 
       node_id = @@settings['xenforo']['node_id']['matches_forum']
-      @xenforo.get_threads( node_id, :bbcode => :strip ).each do |post|
+      @xenforo.get_threads( node_id, bbcode: :strip ).each do |post|
          matches << Match.new( post )
       end
 
@@ -38,7 +38,9 @@ class Pursue < Ramaze::Controller
 
    def roster
       member_groups = @@settings['xenforo']['member_groups']
-      @xenforo.get_user_profiles( member_groups )
+      @xenforo.get_user_profiles( member_groups ).each do |member|
+         member[:avatar_url] = @@settings['community_url'] + "/data/avatars/m/0/#{member[:id]}.jpg"
+      end
    end
 
    def apply

@@ -1,4 +1,3 @@
-require 'log4r'
 require 'bb-ruby-ext'
 
 class Match

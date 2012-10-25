@@ -6,10 +6,10 @@ require 'log4r/outputter/fileoutputter'
 require 'log4r/outputter/consoleoutputters'
 
 Ramaze.options.roots = [__DIR__]
-Log4r::YamlConfigurator.load_yaml_file('config/log4r.yaml')
+Log4r::YamlConfigurator.load_yaml_file("#{__DIR__}/config/log4r.yaml")
 
 class Ramaze::Controller
-   @@settings = YAML::load( File.open('config/settings.yaml') )
+   @@settings = YAML::load( File.open("#{__DIR__}/config/settings.yaml") )
 end
 
 Dir.glob('controllers/*.rb').each do |controller|

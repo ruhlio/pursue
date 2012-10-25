@@ -12,11 +12,12 @@ class XenForo
    def get_threads( forum_node_id, options = {} )
       sql = %Q{
          select thread.title as title,
-                post.post_date as date,
+                post.post_date * 1000 as date,
                 post.message as message
          from xf_post post
          join xf_thread thread on thread.first_post_id = post.post_id
          where thread.node_id = :node_id
+         order by post.post_date desc
       }
 
       args = {
@@ -49,7 +50,8 @@ class XenForo
 select str_to_date(concat(user_profile.dob_day, '-', user_profile.dob_month, '-', user_profile.dob_year), '%Y-%m-%d') date_of_birth,
        user_profile.location location,
        user_group.title title,
-       user_profile.about about
+       user_profile.about about,
+       user.user_id id
 from xf_user_profile user_profile
 join xf_user user on user.user_id = user_profile.user_id
 join xf_user_group user_group on user_group.user_group_id = user.user_group_id

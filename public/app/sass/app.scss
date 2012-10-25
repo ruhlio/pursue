@@ -4,15 +4,15 @@
 @import "home";
 @import "apply";
 @import "roster";
+@import "fonts";
 
 $outerPadding: 20px;
 
 body {
-   background-image: url("../images/background.png");
-   background-position: center center;
-   background-repeat: repeat;
+   background: url("../images/background.png") no-repeat center center fixed;
+   @include background-size(cover);
 
-   font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+   font-family: BebasRegular, Arial, sans-serif;
 }
 
 header, nav, footer, #content {

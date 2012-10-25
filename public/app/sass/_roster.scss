@@ -19,12 +19,20 @@
    div {
       @include column(12, collapse);
 
-      .key {
+      .group1-key, .group2-key {
          @include column(2, collapse);
+         text-align: center;
+      }
+
+      .group1-key {
+         @include column(2, collapse);
+         text-align: center;
+
       }
 
       .value {
          @include column(10);
+         text-align: center;
       }
 
    }
