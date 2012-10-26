@@ -8,18 +8,22 @@
    <li ng-repeat="member in members">
       <img src="{{member.avatar_url}}" width="96" height="96" alt="Avatar">
       <div>
-         <span class="group1-key">Username:</span>
+         <span class="group1-key">Name</span>
          <span class="value">{{member.username}}</span>
       </div>
       <div>
-         <span class="group1-key">Role:</span>
-         <span class="value">{{member.role}}</span>
+         <span class="group1-key">Position</span>
+         <span class="value">{{member.title}}</span>
       </div>
       <div>
-         <span class="group1-key">Location:</span>
+         <span class="group1-key">Location</span>
          <span class="value">{{member.location}}</span>
       </div>
-      <div class="about" ng-bind-html-unsafe="member.about"></div>
+      <div class="spacer">&nbsp;</div>
+      <div>
+         <span class="group2-key">About</span>
+         <span class="value">{{member.about}}</span>
+      </div>
    </li>
 </ul>
 

@@ -7,7 +7,7 @@
       @include column(12, collapse);
       border-top: 2px dotted $secondaryColor;
       padding-top: 10px;
-      margin-top: 10px;
+      margin-top: 20px;
 
       &:first-child {
          border-top: none;
@@ -19,25 +19,34 @@
    div {
       @include column(12, collapse);
 
-      .group1-key, .group2-key {
-         @include column(2, collapse);
-         text-align: center;
+      .group1-key {
+         background-color: #293f0c;
       }
 
-      .group1-key {
-         @include column(2, collapse);
-         text-align: center;
+      .group2-key {
+         background-color: #ff8300;
+      }
 
+      .group1-key, .group2-key {
+         @include column(2, collapse);
+         color: #fff;
+         text-align: center;
       }
 
       .value {
          @include column(10);
-         text-align: center;
+         text-align: left;
+         background-color: #bec5b6;
       }
 
-   }
+      .group1-key, .group2-key, .value {
+         padding: 10px;
+         margin-bottom: 1px;
+      }
 
-   .about {
-      @include column(10);
+      .spacer {
+         margin: 20px;
+      }
+
    }
 }

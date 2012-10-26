@@ -54,7 +54,8 @@ select str_to_date(concat(user_profile.dob_day, '-', user_profile.dob_month, '-'
        user_profile.location location,
        user_group.title title,
        user_profile.about about,
-       user.user_id id
+       user.user_id id,
+       user.username username
 from xf_user_profile user_profile
 join xf_user user on user.user_id = user_profile.user_id
 join xf_user_group user_group on user_group.user_group_id = user.user_group_id
@@ -62,7 +63,7 @@ where user_group.title in :user_groups
       }, {
          :user_groups => user_groups
       }).each do |user_profile|
-         user_profile[:about].bbcode_to_html!
+         user_profile[:about].bbcode_to_text!
          user_profiles << user_profile
       end
       connection.disconnect
